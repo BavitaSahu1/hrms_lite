@@ -76,33 +76,33 @@ WSGI_APPLICATION = 'hrm_lite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "hrm_lite",
-        "USER": "root",
-        "PASSWORD": "offer@123",
-        "HOST": "localhost",
-        "PORT": "3306",
-    }
-}
-
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.mysql",
-#         "NAME": os.environ.get("MYSQLDATABASE"),
-#         "USER": os.environ.get("MYSQLUSER"),
-#         "PASSWORD": os.environ.get("MYSQLPASSWORD"),
-#         "HOST": os.environ.get("MYSQLHOST"),
-#         "PORT": os.environ.get("MYSQLPORT"),
+#         "NAME": "hrm_lite",
+#         "USER": "root",
+#         "PASSWORD": "offer@123",
+#         "HOST": "localhost",
+#         "PORT": "3306",
 #     }
 # }
 
-# print(
-#     os.environ.get("MYSQLHOST"),
-#     os.environ.get("MYSQLDATABASE"),
-#     ' Hello'
-# ) 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": os.environ.get("MYSQLDATABASE"),
+        "USER": os.environ.get("MYSQLUSER"),
+        "PASSWORD": os.environ.get("MYSQLPASSWORD"),
+        "HOST": os.environ.get("MYSQLHOST"),
+        "PORT": os.environ.get("MYSQLPORT"),
+    }
+}
+
+print(
+    os.environ.get("MYSQLHOST"),
+    os.environ.get("MYSQLDATABASE"),
+    ' Hello'
+) 
 
 
 # Password validation

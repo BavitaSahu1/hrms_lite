@@ -44,8 +44,8 @@ def add_emp(request):
 def saveEmployeeData(request):
     try:
         if request.method=='POST':
-            First_Name = request.POST.get('f_name')
-            Last_name = request.POST.get('l_name')
+            First_Name = request.POST.get('f_name').strip().title()
+            Last_name = request.POST.get('l_name').strip().title()
             Department = request.POST.get('department')
             Email = request.POST.get('email')
             Fullname = (First_Name+' '+Last_name)

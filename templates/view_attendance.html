@@ -58,7 +58,7 @@
     <tbody>
         {% for i in data %}
       <tr style="background-color: #e6e6ff;">              
-        <td>{{i.full_name}}</td>
+        <td>{{ i.full_name|title }}</td>
         <td>{{i.emp_id}}</td> 
         <td>{{i.attendance_date}}</td>
         <td>{{i.in_time}}</td>

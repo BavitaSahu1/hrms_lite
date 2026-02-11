@@ -7,11 +7,8 @@ from django.utils import timezone
 import logging
 
 
-current_datetime = timezone.localtime(timezone.now())
-current_date = timezone.localtime(timezone.now()).date()
+# current_date = timezone.localtime(timezone.now()).date()
 
-# current_datetime = timezone.now()
-# current_date = timezone.now().date()
 
 logger = logging.getLogger(__name__)
 
@@ -66,7 +63,7 @@ def saveEmployeeData(request):
                 else:
                     insert_query = "insert into employee(full_name,department,email_address,created_at) values(%s,%s,%s,%s);" 
                                      
-                    my_cur.execute(insert_query, [Fullname,Department,Email,current_datetime])
+                    my_cur.execute(insert_query, [Fullname,Department,Email, timezone.localtime(timezone.now())])
                     connection.commit()
 
                     messages.success(request,"Data Saved Successfully...")
@@ -157,8 +154,8 @@ def DeleteEmp(request):
                     
                 query = "update employee set deleted_at = %s where emp_id = %s and deleted_at is Null;" 
                 query2 = "update attendance set deleted_at = %s where emp_id = %s and deleted_at is Null;" 
-                my_cur.execute(query, [current_datetime, DeleteButton])
-                my_cur.execute(query2, [current_datetime, DeleteButton])
+                my_cur.execute(query, [timezone.localtime(timezone.now()), DeleteButton])
+                my_cur.execute(query2, [timezone.localtime(timezone.now()), DeleteButton])
                 connection.commit()
                 messages.success(request, f"{emp_name[0]}'s Employee Record Deleted. ")
             finally:
@@ -256,7 +253,7 @@ def dashboard(request):
             cursor.execute(query3)
             absent_employees = dictfetchall(cursor)
 
-            cursor.execute(query4, [current_date])
+            cursor.execute(query4, [timezone.localdate()])
             recent_attendance_updated = dictfetchall(cursor)
         finally:
             cursor.close()
@@ -291,7 +288,7 @@ def MarkAttendance(request):
                     f"Duplicate entry is not allowed.")
                 else:
                     query3 = "insert into attendance(emp_id, attendance_date, attendance_status, check_in, check_out, created_at) values(%s,%s,%s,%s,%s,%s)"
-                    cursor.execute(query3, [emp_id, date, status, in_time, out_time, current_datetime])
+                    cursor.execute(query3, [emp_id, date, status, in_time, out_time, timezone.localtime(timezone.now())])
                     connection.commit()
                     messages.success(request, f"Attendance marked successfully...")
             finally:

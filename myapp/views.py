@@ -211,7 +211,7 @@ def view_attendance(request):
                 cursor.execute(query2)
                 attendance_data = dictfetchall(cursor)
 
-            query_for_model = """SELECT DISTINCT emp_id, full_name FROM employee WHERE deleted_at IS NULL;"""
+            query_for_model = """SELECT DISTINCT emp_id, email_address FROM employee WHERE deleted_at IS NULL;"""
             cursor.execute(query_for_model)
             model_data = dictfetchall(cursor)
         finally:

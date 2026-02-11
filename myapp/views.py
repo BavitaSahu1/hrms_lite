@@ -40,7 +40,7 @@ def add_emp(request):
         return HttpResponse("Something went wrong", status=500)
 
 
-# @csrf_exempt
+@csrf_exempt
 def saveEmployeeData(request):
     try:
         if request.method=='POST':
@@ -92,7 +92,7 @@ def dictfetchall(cursor):
 
 
 
-# @csrf_exempt
+@csrf_exempt
 def view_emp(request):
     try:
         cursor = connection.cursor()
@@ -145,7 +145,7 @@ def view_emp(request):
 
 
 
-# @csrf_exempt
+@csrf_exempt
 def DeleteEmp(request):
     try:
         if request.method == 'POST':
@@ -169,7 +169,7 @@ def DeleteEmp(request):
     return redirect('view_emp')
 
 
-# @csrf_exempt
+@csrf_exempt
 def view_attendance(request):
     try:
         cursor = connection.cursor()
@@ -225,7 +225,7 @@ def view_attendance(request):
 
 
 
-# @csrf_exempt
+@csrf_exempt
 def dashboard(request):
     try:
         cursor = connection.cursor()
@@ -267,7 +267,7 @@ def dashboard(request):
         messages.error(request, "Failed to load dashboard")
 
 
-# @csrf_exempt
+@csrf_exempt
 def MarkAttendance(request):
     try:
         if request.method == "POST":
